@@ -1,44 +1,18 @@
 package com.camila.resttemplate.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Objects;
 
-@Entity
+@Entity // entidade mapeada para uma tabela no DB que tem relação com a classe cliente
+@Data // gerar getter and setter via lombok
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false) // não pode ser not null
     private String nome;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return Objects.equals(id, cliente.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
