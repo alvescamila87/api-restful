@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // delega para o DB a responsabilidade de gerar ID
     private Long id;
     @Column(nullable = false) // não pode ser not null
     private String nome;

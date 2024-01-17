@@ -3,9 +3,8 @@ package com.camila.resttemplate.controller;
 import com.camila.resttemplate.model.Cliente;
 import com.camila.resttemplate.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +18,11 @@ public class ClienteController {
     @GetMapping
     public List<Cliente> listar() {
         return clienteRepository.findAll();
+    }
+
+    @PostMapping // recebe requisições post
+    @ResponseStatus(HttpStatus.CREATED) // retornar 201 (created), ao invés de 200 (ok)
+    public Cliente adicionar(@RequestBody Cliente cliente) { // requestBody converte o corpo da requisição para o java Cliente
+        return clienteRepository.save(cliente);
     }
 }
